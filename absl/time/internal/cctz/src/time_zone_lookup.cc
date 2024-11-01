@@ -33,6 +33,16 @@
 #endif
 
 #if defined(_WIN32)
+#if defined(WINAPI_FAMILY_PARTITION)
+#if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_GAMES)
+#define USE_WIN_SDK 1
+#endif
+#else
+#define USE_WIN_SDK 1
+#endif
+#endif
+
+#if defined(USE_WIN_SDK)
 #include <sdkddkver.h>
 // Include only when the SDK is for Windows 10 (and later), and the binary is
 // targeted for Windows XP and later.
